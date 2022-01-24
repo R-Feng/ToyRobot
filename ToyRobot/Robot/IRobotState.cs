@@ -1,6 +1,6 @@
 ﻿namespace ToyRobot.Robot
 {
-    public class Robot : IRobot
+    public interface IRobotState
     {
         public int X { get; set; }
         public int Y { get; set; }

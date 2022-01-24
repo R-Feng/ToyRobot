@@ -1,23 +1,22 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ToyRobot.Exceptions;
 
 namespace ToyRobot.Robot
 {
     public class RobotRepository : IRobotRepository
     {
-        private IRobot _robot;
+        private IRobotState _robot;
 
         public void PlaceRobot(int x, int y, Direction direction)
         {
-            _robot = Program.ServiceProvider.GetRequiredService<IRobot>();
+            _robot = Program.ServiceProvider.GetRequiredService<IRobotState>();
             _robot.X = x;
             _robot.Y = y;
             _robot.Direction = direction;
         }
 
         
-        public IRobot GetRobot()
+        public IRobotState GetRobot()
         {
             if (_robot == null)
             {
