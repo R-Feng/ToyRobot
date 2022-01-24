@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ToyRobot.Exceptions;
 using ToyRobot.Robot;
 
 namespace ToyRobot.Test

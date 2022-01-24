@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ToyRobot
+namespace ToyRobot.Exceptions
 {
     public class RobotNotPlacedException : Exception
     {

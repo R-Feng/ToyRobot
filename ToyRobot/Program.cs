@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
+using ToyRobot.Exceptions;
 using ToyRobot.Robot;
 
 namespace ToyRobot
