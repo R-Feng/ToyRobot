@@ -9,7 +9,6 @@ namespace ToyRobot.Test
     public class RobotRepositoryTest
     {
         [TestMethod]
-        [ExpectedException(typeof(RobotNotPlacedException))]
         public void RepositoryShouldReturnCorrectRobotAfterPlacement()
         {
             // Arrange
@@ -42,7 +41,7 @@ namespace ToyRobot.Test
 
         private static IRobotRepository GetRobotRepository()
         {
-            return Program.ServiceProvider.GetRequiredService<IRobotRepository>();
+            return new RobotRepository();
         }
     }
 }

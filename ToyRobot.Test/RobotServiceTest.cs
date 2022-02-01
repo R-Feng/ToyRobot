@@ -158,7 +158,7 @@ namespace ToyRobot.Test
 
         private static IRobotService GetRobotService()
         {
-            return Program.ServiceProvider.GetRequiredService<IRobotService>();
+            return new RobotService(new RobotRepository());
         }
     }
 }
