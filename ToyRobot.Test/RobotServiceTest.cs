@@ -8,21 +8,9 @@ namespace ToyRobot.Test
     [TestClass]
     public class RobotServiceTest
     {
-        [AssemblyInitialize]
-        public static void AssemblyInitialize(TestContext context)
-        {
-            Program.RegisterServices();
-        }
-
-        [AssemblyCleanup]
-        public static void AssemblyCleanup()
-        {
-            Program.DisposeServices();
-        }
-
         [TestMethod]
         [ExpectedException(typeof(RobotNotPlacedException))]
-        public void RobotMustBePlacedBeforeMove()
+        public void RobotMustBePlacedBeforeMoveOtherwiseThrowRobotNotPlacedException()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -31,11 +19,12 @@ namespace ToyRobot.Test
             robotService.Move();
 
             // Assert - Expects RobotNotPlacedException
+            // This is not dead code. Assert is done by [ExpectedException] attribute above method signature.
         }
 
         [TestMethod]
         [ExpectedException(typeof(RobotNotPlacedException))]
-        public void RobotMustBePlacedBeforeLeft()
+        public void RobotMustBePlacedBeforeLeftOtherwiseThrowRobotNotPlacedException()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -44,11 +33,12 @@ namespace ToyRobot.Test
             robotService.Left();
 
             // Assert - Expects RobotNotPlacedException
+            // This is not dead code. Assert is done by [ExpectedException] attribute above method signature.
         }
 
         [TestMethod]
         [ExpectedException(typeof(RobotNotPlacedException))]
-        public void RobotMustBePlacedBeforeRight()
+        public void RobotMustBePlacedBeforeRightOtherwiseThrowRobotNotPlacedException()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -57,11 +47,12 @@ namespace ToyRobot.Test
             robotService.Right();
 
             // Assert - Expects RobotNotPlacedException
+            // This is not dead code. Assert is done by [ExpectedException] attribute above method signature.
         }
 
         [TestMethod]
         [ExpectedException(typeof(RobotNotPlacedException))]
-        public void RobotMustBePlacedBeforeReport()
+        public void RobotMustBePlacedBeforeReportOtherwiseThrowRobotNotPlacedException()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -70,10 +61,11 @@ namespace ToyRobot.Test
             robotService.Report();
 
             // Assert - Expects RobotNotPlacedException
+            // This is not dead code. Assert is done by [ExpectedException] attribute above method signature.
         }
 
         [TestMethod]
-        public void TestCaseExample1()
+        public void RobotMustBeMovedToTheRightPositionWhenPlacedNorth()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -87,7 +79,7 @@ namespace ToyRobot.Test
         }
 
         [TestMethod]
-        public void TestCaseExample2()
+        public void RobotMustBeFacingTheRightDirectionWhenMovedLeft()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -101,7 +93,7 @@ namespace ToyRobot.Test
         }
 
         [TestMethod]
-        public void TestCaseExample3()
+        public void RobotMustBeMovedToTheRightPositionAfterMultipleMoves()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -118,7 +110,7 @@ namespace ToyRobot.Test
         }
 
         [TestMethod]
-        public void TestCaseExample4()
+        public void RobotMustBeMovedToTheRightPositionAfterBeingPlacedAgain()
         {
             // Arrange
             var robotService = GetRobotService();
@@ -133,6 +125,35 @@ namespace ToyRobot.Test
 
             // Assert
             Assert.AreEqual("3,2,NORTH", robotService.Report());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RobotOutBoundaryException))]
+        public void RobotCannotBePlacedOutOfBoundaryOtherwiseThrowRobotOutBoundaryException()
+        {
+            // Arrange
+            var robotService = GetRobotService();
+
+            // Act
+            robotService.Place(1, 8, Direction.EAST);
+
+            // Assert - Expects RobotOutBoundaryException
+            // This is not dead code. Assert is done by [ExpectedException] attribute above method signature.
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RobotOutBoundaryException))]
+        public void RobotCannotBeMovedOutOfBoundaryOtherwiseThrowRobotOutBoundaryException()
+        {
+            // Arrange
+            var robotService = GetRobotService();
+
+            // Act
+            robotService.Place(6, 6, Direction.EAST);
+            robotService.Move();
+
+            // Assert - Expects RobotOutBoundaryException
+            // This is not dead code. Assert is done by [ExpectedException] attribute above method signature.
         }
 
         private static IRobotService GetRobotService()

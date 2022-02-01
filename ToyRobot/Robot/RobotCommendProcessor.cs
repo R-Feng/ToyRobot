@@ -12,7 +12,7 @@ namespace ToyRobot.Robot
             _robotService = robotService;
         }
 
-        public void ProcessCommend(string commend, ref bool running)
+        public void ProcessCommend(string commend)
         {
             if (commend.StartsWith("PLACE", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -32,7 +32,7 @@ namespace ToyRobot.Robot
             }
             else if (commend.StartsWith("REPORT", StringComparison.CurrentCultureIgnoreCase))
             {
-                ProcessReportCommend(out running);
+                ProcessReportCommend();
             }
             else
             {
@@ -82,11 +82,9 @@ namespace ToyRobot.Robot
             _robotService.Right();
         }
 
-        private void ProcessReportCommend(out bool running)
+        private void ProcessReportCommend()
         {
             Console.WriteLine(_robotService.Report());
-            Console.WriteLine("Please press <Enter> to continue, please any other key to exit.");
-            running = Console.ReadKey().Key == ConsoleKey.Enter;
         }
     }
 }

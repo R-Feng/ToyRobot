@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using ToyRobot.Exceptions;
 
 namespace ToyRobot.Robot
 {
-    public class RobotRepository : IRobotRepository
+    public class RobotRepository : IRobotRepository, IDisposable
     {
         private IRobotState _robot;
 
@@ -24,6 +25,11 @@ namespace ToyRobot.Robot
             }
 
             return _robot;
+        }
+
+        public void Dispose()
+        {
+            _robot?.Dispose();
         }
     }
 }

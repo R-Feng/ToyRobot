@@ -2,6 +2,6 @@
 {
     public interface IRobotCommendProcessor
     {
-        public void ProcessCommend(string commend, ref bool running);
+        public void ProcessCommend(string commend);
     }
 }

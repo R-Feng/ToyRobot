@@ -1,5 +1,4 @@
 ﻿using System;
-using ToyRobot.Exceptions;
 
 namespace ToyRobot.Robot
 {
@@ -15,8 +14,7 @@ namespace ToyRobot.Robot
         public void Run()
         {
             Console.WriteLine("Welcome to Toy Robot. Please start with your first commend.");
-            var running = true;
-            do
+            while (true)
             {
                 Console.Write(">");
                 var commend = Console.ReadLine();
@@ -27,13 +25,13 @@ namespace ToyRobot.Robot
 
                 try
                 {
-                    _robotCommendProcessor.ProcessCommend(commend, ref running);
+                    _robotCommendProcessor.ProcessCommend(commend);
                 }
-                catch (RobotNotPlacedException e)
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
-            } while (running);
+            }
         }
     }
 }
